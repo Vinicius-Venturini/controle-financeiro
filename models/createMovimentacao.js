@@ -8,7 +8,7 @@ async function createMovimentacao(id, tipo, valor, descricao){
 
     if(!(typeof valor === "number")) throw new AppError("Bad Request: O valor de movimentação deve ser passado em forma de número real", 400);
 
-    if(valor >= 1000000) throw new AppError("Bad Request: O valor de movimentação deve ser menor que 1000000", 400);
+    if(valor > 9999999999999) throw new AppError("Bad Request: O valor de movimentação deve ser menor que 10000000000000", 400);
 
     if(valor < 0) throw new AppError("Bad Request: O valor de movimentação deve ser positivo", 400);
 

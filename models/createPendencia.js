@@ -12,7 +12,7 @@ async function createPendencia(id, tipo, valor, descricao, previsao){
 
     if(!(typeof valor === "number")) throw new AppError("Bad Request: O valor de pendencia deve ser passado em forma de número real", 400);
 
-    if(valor >= 1000000) throw new AppError("Bad Request: O valor de pendencia deve ser menor que 1000000", 400);
+    if(valor > 9999999999999) throw new AppError("Bad Request: O valor de pendencia deve ser menor que 10000000000000", 400);
 
     if(valor < 0) throw new AppError("Bad Request: O valor de pendencia deve ser positivo", 400);
 
