@@ -33,13 +33,11 @@ router.get('/:id', basicAuth, async (req, res) => {
 router.post('/', async (req, res) => {
 
     if(!req.body.nome) throw new AppError('Bad Request: Parâmetro "nome" não especificado!', 400);
-
     if(!req.body.senha) throw new AppError('Bad Request: Parâmetro "senha" não especificado!', 400);
-    
 
     try{
         const newUser = await register(req.body.nome, req.body.senha);
-        return res.status(200).json({
+        return res.status(201).json({
             user: newUser
         });
     }catch(error){
@@ -64,7 +62,6 @@ router.delete('/:id', basicAuth, async (req, res) => {
 router.patch('/:id', basicAuth, async (req, res) => {
 
     if(Object.keys(req.body).length < 1) throw new AppError('Bad Request: O campo a ser alterado não foi fornecido', 400);
-
     if(Object.keys(req.body).length > 1) throw new AppError('Forbiden: Só pode se alterar um campo do usuário por requisição', 403);
 
     try{
@@ -84,15 +81,10 @@ router.patch('/:id', basicAuth, async (req, res) => {
 router.get('/:id/movimentacao', basicAuth, async (req, res) => {
 
     if(req.query.from){
-        
         if(!(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(req.query.from))) throw new AppError('Bad Request: A data deve seguir o modelo YYYY-MM-DD', 400);
-
     }
-
     if(req.query.to){
-        
         if(!(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(req.query.to))) throw new AppError('Bad Request: A data deve seguir o modelo YYYY-MM-DD', 400);
-
     }
 
     try{
@@ -125,23 +117,17 @@ router.post('/:id/movimentacao', basicAuth, async (req, res) => {
 
     // Entrada = true / Saída = false
     if(!req.body.tipo) throw new AppError('Bad Request: Parâmetro "tipo" não especificado!', 400);
-
     if(!req.body.valor) throw new AppError('Bad Request: Parâmetro "valor" não especificado!', 400);
-
     if(!req.body.descricao) throw new AppError('Bad Request: Parâmetro "descricao" não especificado!', 400);
-
     if(req.body.tipo != 'entrada' && req.body.tipo != 'saida') throw new AppError('Bad Request: O parâmetro "tipo" deve ser definido como "entrada" ou "saida"', 400);
-
     const tipo = (req.body.tipo == 'entrada' ? '1' : '0');
 
     try{
-
         const resposta = await createMovimentacao(req.params.id, tipo, req.body.valor, req.body.descricao);
-        return res.status(200).json({
+        return res.status(201).json({
             user: resposta.user,
             movimentacao: resposta.movimentacao
         });
-
     }catch(error){
         throw error;
     }
@@ -151,7 +137,6 @@ router.post('/:id/movimentacao', basicAuth, async (req, res) => {
 router.patch('/:id/movimentacao/:idMovimentacao', basicAuth, async (req, res) => {
 
     if(Object.keys(req.body).length < 1) throw new AppError('Bad Request: O campo a ser alterado não foi fornecido', 400);
-
     if(Object.keys(req.body).length > 1) throw new AppError('Forbiden: Só pode se alterar um campo da movimentação por requisição', 403);
 
     try{
@@ -186,15 +171,10 @@ router.delete('/:id/movimentacao/:idMovimentacao', basicAuth, async (req, res) =
 router.get('/:id/pendencia', basicAuth, async (req, res) => {
 
     if(req.query.from){
-        
         if(!(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(req.query.from))) throw new AppError('Bad Request: A data deve seguir o modelo YYYY-MM-DD', 400);
-
     }
-
-    if(req.query.to){
-        
+    if(req.query.to){   
         if(!(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(req.query.to))) throw new AppError('Bad Request: A data deve seguir o modelo YYYY-MM-DD', 400);
-
     }
 
     try{
@@ -227,29 +207,20 @@ router.post('/:id/pendencia', basicAuth, async (req, res) => {
 
     // Receita = true / Dívida = false
     if(!req.body.tipo) throw new AppError('Bad Request: Parâmetro "tipo" não especificado!', 400);
-
     if(!req.body.valor) throw new AppError('Bad Request: Parâmetro "valor" não especificado!', 400);
-
     if(!req.body.descricao) throw new AppError('Bad Request: Parâmetro "descricao" não especificado!', 400);
-
     if(req.body.previsao){
-        
         if(!(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(req.body.previsao))) throw new AppError('Bad Request: A data deve seguir o modelo YYYY-MM-DD', 400);
-
     }
-
     if(req.body.tipo != 'receita' && req.body.tipo != 'divida') throw new AppError('Bad Request: O parâmetro "tipo" deve ser definido como "receita" ou "divida"', 400);
-
     const tipo = (req.body.tipo == 'receita' ? '1' : '0');
 
     try{
-
         const resposta = await createPendencia(req.params.id, tipo, req.body.valor, req.body.descricao, req.body.previsao);
-        return res.status(200).json({
+        return res.status(201).json({
             user: resposta.user,
             pendencia: resposta.pendencia
         });
-
     }catch(error){
         throw error;
     }
@@ -259,7 +230,6 @@ router.post('/:id/pendencia', basicAuth, async (req, res) => {
 router.patch('/:id/pendencia/:idPendencia', basicAuth, async (req, res) => {
 
     if(Object.keys(req.body).length < 1) throw new AppError('Bad Request: O campo a ser alterado não foi fornecido', 400);
-
     if(Object.keys(req.body).length > 1) throw new AppError('Forbiden: Só pode se alterar um campo da pendencia por requisição', 403);
 
     try{

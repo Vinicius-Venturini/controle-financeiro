@@ -9,6 +9,9 @@
   },
   "author": "Vinícius Venturini",
   "homepage": "https://github.com/Vinicius-Venturini/controle-financeiro.git#readme",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "basic-auth": "^2.0.1",
     "dotenv": "^16.0.1",
