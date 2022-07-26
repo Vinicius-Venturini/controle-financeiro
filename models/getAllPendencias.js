@@ -33,7 +33,7 @@ async function getAllPendencias(iduser, from, to){
                 valor: responseSelect.rows[i].valor,
                 descricao: responseSelect.rows[i].descricao,
                 previsao: previsao,
-                created_at: new Date(responseSelect.rows[i].created_at).toLocaleString({timeZone: "America/Sao_Paulo"})
+                created_at: new Date(responseSelect.rows[i].created_at)
             };
             pendencias.push(pendenciaObj);
 

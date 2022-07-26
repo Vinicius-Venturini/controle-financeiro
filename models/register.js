@@ -8,7 +8,7 @@ async function register(name, password){
     if(name.length > 30) throw new AppError('Bad Request: O parâmetro "nome" excede a quantidade máxima permitida de caracteres', 400);
 
     const passwordHash = sha256(password);
-    const created_at = new Date().toLocaleString({timeZone: "America/Sao_Paulo"});
+    const created_at = new Date();
 
     try{
 

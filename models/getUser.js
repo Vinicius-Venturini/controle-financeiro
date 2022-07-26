@@ -16,7 +16,7 @@ async function getUser(id){
             nome: responseSelect.rows[0].nome,
             saldo: responseSelect.rows[0].saldo,
             pendencias: responseSelect.rows[0].pendencias,
-            created_at: new Date(responseSelect.rows[0].created_at).toLocaleString({timeZone: "America/Sao_Paulo"})
+            created_at: new Date(responseSelect.rows[0].created_at)
         };
 
         return userObj;

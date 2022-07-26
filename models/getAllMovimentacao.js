@@ -25,7 +25,7 @@ async function getAllMovimentacao(iduser, from, to){
                 tipo: tipo,
                 valor: responseSelect.rows[i].valor,
                 descricao: responseSelect.rows[i].descricao,
-                created_at: new Date(responseSelect.rows[i].created_at).toLocaleString({timeZone: "America/Sao_Paulo"})
+                created_at: new Date(responseSelect.rows[i].created_at)
             };
             movimentacoes.push(movimentacaoObj);
 

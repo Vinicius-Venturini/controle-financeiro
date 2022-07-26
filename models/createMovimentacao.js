@@ -13,7 +13,7 @@ async function createMovimentacao(id, tipo, valor, descricao){
     if(valor < 0) throw new AppError("Bad Request: O valor de movimentação deve ser positivo", 400);
 
     const valorString = valor.toString();
-    const created_at = new Date().toLocaleString({timeZone: "America/Sao_Paulo"});
+    const created_at = new Date();
 
     try{
         

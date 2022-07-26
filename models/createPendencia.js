@@ -17,7 +17,7 @@ async function createPendencia(id, tipo, valor, descricao, previsao){
     if(valor < 0) throw new AppError("Bad Request: O valor de pendencia deve ser positivo", 400);
 
     const valorString = valor.toString();
-    const created_at = new Date().toLocaleString({timeZone: "America/Sao_Paulo"});
+    const created_at = new Date();
 
     try{
         

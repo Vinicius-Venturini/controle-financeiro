@@ -27,7 +27,7 @@ async function getPendencia(id){
             valor: responseSelect.rows[0].valor,
             descricao: responseSelect.rows[0].descricao,
             previsao: previsao,
-            created_at: new Date(responseSelect.rows[0].created_at).toLocaleString({timeZone: "America/Sao_Paulo"})
+            created_at: new Date(responseSelect.rows[0].created_at)
         };
 
         return pendenciaObj;
