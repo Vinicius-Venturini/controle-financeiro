@@ -1,11 +1,8 @@
 const { Pool } = require('pg');
+const connectionString = process.env.POSTGRESQL_URL;
 
 const pool = new Pool({
-    user: process.env.POSTGRESQL_USER,
-    host: process.env.POSTGRESQL_HOST,
-    database: process.env.POSTGRESQL_DB,
-    password: process.env.POSTGRESQL_PASS,
-    port: parseInt(process.env.POSTGRESQL_PORT),
+    connectionString,
 });
 
 async function dbConnect(){

@@ -12,6 +12,9 @@
   "scripts": {
     "start": "node app.js"
   },
+  "engines": {
+    "node": "16.16.0"
+  },
   "dependencies": {
     "basic-auth": "^2.0.1",
     "dotenv": "^16.0.1",
